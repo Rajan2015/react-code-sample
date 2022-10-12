@@ -31,8 +31,8 @@ You have a GroceryApp component, which receives a list of products, each one wit
 </p>
      <GroceryApp
   products={[
-    { name: "Oranges", votes: 0 },
-    { name: "Bananas", votes: 0 }
+    {id:1, name: "Oranges", votes: 2 },
+    {id:2, name: "Bananas", votes: 5 }
   ]}
 />
 </>}

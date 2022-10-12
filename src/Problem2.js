@@ -8,13 +8,13 @@ const users = [
   ];
   
   function Problem2() {
-  
+    const userItems = users.map((user) => <li key={user.id}>{user.name}</li>);
   
     return (
       <>
       <h4>  Challenge: Display all users to the browser</h4>
       <h5>User names</h5>
-      <ul></ul>
+      <ul>{userItems}</ul>
     </>
     );
   }

@@ -1,31 +1,50 @@
 import './App.css';
 import React from 'react';
 function GroceryApp(props) {
-    let [products, setProducts] = React.useState(props.products);
-    return (
-      <>
-         <ul>
-    <li>
-      <span>Oranges</span> - <span>votes: 1</span><button>+</button> <button>-</button>
-    </li>
-    <li>
-      <span>Bananas</span> - <span>votes: 0</span><button>+</button> <button>-</button>
-    </li>
-  </ul>
-      </>
+    let [products, setProducts] = React.useState(props.products || []);
+    const updateProduct= (product)=>{
+       // 👇️ passing function to setData method
+       setProducts(prevState => {
+        const newState = prevState.map(obj => {
+          // 👇️ if id equals 2, update country property
+          if (obj.id === product.id) {
+            return {...obj, votes: product.votes};
+          }
+  
+          // 👇️ otherwise return object as is
+          return obj;
+        });
+  
+        return newState;
+      });
+    }
+    return ( <div>
+        <ul>
+          {
+           products.map(function(item, i){             
+            return  <li key={i}><Product product={item} updateProduct={updateProduct}></Product></li>
+           })
+         }
+        </ul>
+      </div>
     );
   }
 
-  const Product = props => {
+  const Product = (props) => {
     const plus = () => {
-      // Call props.onVote to increase the vote count for this product
+        let prod = props.product;
+        prod.votes = props.product.votes + 1;
+        props.updateProduct(prod);
     };
     const minus = () => {
-      // Call props.onVote to decrease the vote count for this product
+        let prod = props.product;
+        prod.votes = props.product.votes ==0? 0: props.product.votes - 1;
+        props.updateProduct(prod);
     };
-    return (
+    return (        
       <li>
-        <span>{/* Product name */}</span> - <span>votes: {/* Number of votes*/}</span>
+        
+        <span>{props.product.name}</span> - <span>votes: {props.product.votes}</span>
         <button onClick={plus}>+</button>{" "}
         <button onClick={minus}>-</button>
       </li>

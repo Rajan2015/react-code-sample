@@ -10,9 +10,7 @@ function Child() {
   }
   
   function Message() {
-    const [value, setValue] = React.useState(
-      "I need to be updated from my child"
-    );
+    const [show, setShow] = React.useState(false)
   
     return (
       <>
@@ -26,8 +24,10 @@ function Child() {
         <p>Finish the Message component by implementing this logic.</p>
 
     <React.Fragment>
-          <a href="#">Want to buy a new car?</a>
-          <p>Call +11 22 33 44 now!</p>
+          <a onClick={()=>{
+            setShow(!show);
+          }} href="#">Want to buy a new car? Click me</a>
+          {show && <p>Call +11 22 33 44 now!</p>}
         </React.Fragment>
       </>
     );
