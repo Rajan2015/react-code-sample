@@ -2,18 +2,20 @@ import './App.css';
 import React from 'react';
 import GroceryApp  from './Problem1';
 import Problem2 from './Problem2';
-
+import { UserContext } from './UserProvider';
 import Message from './Problem3';
 
 
 function App() {
   const [currentProblem, setCurrentProblem] = React.useState(0);
+  const userDetails = React.useContext(UserContext);
   const onChangeValue =  (event) => {
     setCurrentProblem(event.target.value);
   }
 
   return (
     <div className="">
+      <p>Hello {userDetails.username}</p>
       <p>There are 3 set of problems that need to be fixed as below:</p>
       <div onChange={onChangeValue}>
         <input type="radio" value="1" name="problem" /> Problem 1
