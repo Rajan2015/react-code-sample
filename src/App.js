@@ -4,6 +4,8 @@ import GroceryApp  from './Problem1';
 import Problem2 from './Problem2';
 import { UserContext } from './UserProvider';
 import Message from './Problem3';
+import ItemDraggable from './ItemDraggable';
+
 
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
   }
 
   return (
+  
     <div className="">
+        <ItemDraggable></ItemDraggable>
       <p>Hello {userDetails.username}</p>
       <p>There are 3 set of problems that need to be fixed as below:</p>
       <div onChange={onChangeValue}>
